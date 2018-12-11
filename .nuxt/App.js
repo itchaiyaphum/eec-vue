@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import NuxtLoading from './components/nuxt-loading.vue'
 
-import _6f6c098b from './layouts/default.vue'
+import _6f6c098b from '..\\layouts\\default.vue'
 
 const layouts = { "_default": _6f6c098b }
 
 export default {
-  head: {"meta":[],"link":[],"style":[],"script":[]},
+  head: {"title":"EEC  Demo","meta":[{"charset":"utf-8"},{"http-equiv":"X-UA-Compatible","content":"IE-edge"},{"name":"viewport","content":"width=device-width, initial-scale=1"}],"link":[{"rel":"shortcut icon","href":"\u002Ficons\u002Ffavicon.png"},{"rel":"icon","type":"image\u002Fpng","sizes":"32x32","href":"\u002Ficons\u002Ffavicon.png"},{"rel":"icon","type":"image\u002Fpng","sizes":"16x16","href":"\u002Ficons\u002Ffavicon.png"},{"rel":"apple-touch-icon","href":"\u002Ficons\u002Ffavicon.png"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Roboto:100,300,400,500,700,900|Material+Icons"}],"style":[],"script":[]},
 
   render(h, props) {
     const loadingEl = h('nuxt-loading', { ref: 'loading' })

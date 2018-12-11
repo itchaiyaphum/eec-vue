@@ -11,6 +11,9 @@ import { setContext, getLocation, getRouteData, normalizeError } from './utils'
 
 /* Plugins */
 
+import nuxt_plugin_vuetify_d6afc2c2 from 'nuxt_plugin_vuetify_d6afc2c2' // Source: ..\\plugins\\vuetify.js
+import nuxt_plugin_axios_5659d192 from 'nuxt_plugin_axios_5659d192' // Source: ..\\plugins\\axios.js
+
 // Component: <no-ssr>
 Vue.component(NoSSR.name, NoSSR)
 
@@ -102,7 +105,33 @@ async function createApp(ssrContext) {
     beforeRenderFns: ssrContext ? ssrContext.beforeRenderFns : undefined
   })
 
+  const inject = function (key, value) {
+    if (!key) throw new Error('inject(key, value) has no key provided')
+    if (typeof value === 'undefined') throw new Error('inject(key, value) has no value provided')
+    key = '$' + key
+    // Add into app
+    app[key] = value
+
+    // Check if plugin not already installed
+    const installKey = '__nuxt_' + key + '_installed__'
+    if (Vue[installKey]) return
+    Vue[installKey] = true
+    // Call Vue.use() to install the plugin into vm
+    Vue.use(() => {
+      if (!Vue.prototype.hasOwnProperty(key)) {
+        Object.defineProperty(Vue.prototype, key, {
+          get() {
+            return this.$root.$options[key]
+          }
+        })
+      }
+    })
+  }
+
   // Plugin execution
+
+  if (typeof nuxt_plugin_vuetify_d6afc2c2 === 'function') await nuxt_plugin_vuetify_d6afc2c2(app.context, inject)
+  if (typeof nuxt_plugin_axios_5659d192 === 'function') await nuxt_plugin_axios_5659d192(app.context, inject)
 
   // If server-side, wait for async component to be resolved first
   if (process.server && ssrContext && ssrContext.url) {

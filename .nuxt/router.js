@@ -4,6 +4,7 @@ import { interopDefault } from './utils'
 
 const _17d8534e = () => interopDefault(import('..\\pages\\about.vue' /* webpackChunkName: "pages_about" */))
 const _00201006 = () => interopDefault(import('..\\pages\\students\\index.vue' /* webpackChunkName: "pages_students_index" */))
+const _55ef7433 = () => interopDefault(import('..\\pages\\req\\human.vue' /* webpackChunkName: "pages_req_human" */))
 const _13cbb11e = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages_index" */))
 
 Vue.use(Router)
@@ -71,6 +72,10 @@ export function createRouter() {
       path: "/students",
       component: _00201006,
       name: "students"
+    }, {
+      path: "/req/human",
+      component: _55ef7433,
+      name: "req-human"
     }, {
       path: "/",
       component: _13cbb11e,
